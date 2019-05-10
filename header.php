@@ -46,6 +46,8 @@
 					<?php endif; ?>
 				</div><!-- .site-branding -->
 
+				<h2>Hey! Testing here!</h2>
+
 				<?php if ( has_nav_menu( 'primary' ) || has_nav_menu( 'social' ) ) : ?>
 					<button id="menu-toggle" class="menu-toggle"><?php _e( 'Menu', 'twentysixteen' ); ?></button>
 
