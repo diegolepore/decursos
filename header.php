@@ -23,7 +23,6 @@
 	
 	<!--===== Header Area =====-->
 	<header class="site-header">
-	<p>HOLAA</p>
 		<div class="logo">
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
 				<?php 
