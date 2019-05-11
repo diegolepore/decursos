@@ -1,66 +1,48 @@
 <?php
-/**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package WordPress
- * @subpackage Twenty_Sixteen
- * @since Twenty Sixteen 1.0
- */
+/*
+# ====================================
+# index.php
+#
+# The main template file
+# ====================================
+*/
+?>
 
-get_header(); ?>
+<?php get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<!--==== Start Blog Section ====-->
+<div class="section" id="blog-grid">
+	<div class="container-fluid">
+		<div class="row blog-masonry" id="blog-masonry">
+			<?php 
+			if ( have_posts() ) : 
 
-		<?php if ( have_posts() ) : ?>
+				/* Start the loop. */
+				while ( have_posts() ) : the_post(); 
 
-			<?php if ( is_home() && ! is_front_page() ) : ?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-					<h3>Yes I did a change locally and pushed live!</h3>
-				</header>
-			<?php endif; ?>
+					/* Include the Post-Format-specific template for the content. */
+					get_template_part( 'content', get_post_format() );
 
-			<?php
-			// Start the loop.
-			while ( have_posts() ) :
-				the_post();
+				endwhile;
 
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+			else :
 
-				// End the loop.
-			endwhile;
+				get_template_part( 'content', 'none' );
 
-			// Previous/next page navigation.
-			the_posts_pagination(
-				array(
-					'prev_text'          => __( 'Previous page', 'twentysixteen' ),
-					'next_text'          => __( 'Next page', 'twentysixteen' ),
-					'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentysixteen' ) . ' </span>',
-				)
-			);
-
-			// If no content, include the "No posts found" template.
-		else :
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
+			endif;
+			?>
+		</div><!-- end row --> 
+		
+		<!-- Posts navigation -->
+		<?php 
+		the_posts_navigation( array(
+		    'prev_text' => __( '&larr; Older posts', 'akyl' ),
+		    'next_text' => __( 'Newer posts &rarr;', 'akyl' ),
+		) ); 
 		?>
+		
+	</div><!-- end container -->
+</div>
+<!--==== End Blog Section ====-->
 
-		</main><!-- .site-main -->
-	</div><!-- .content-area -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

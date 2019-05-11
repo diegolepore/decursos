@@ -1,70 +1,87 @@
 <?php
-/**
- * The template for displaying the footer
- *
- * Contains the closing of the #content div and all content after
- *
- * @package WordPress
- * @subpackage Twenty_Sixteen
- * @since Twenty Sixteen 1.0
- */
+/*
+# ============================================
+# footer.php
+#
+# The template for displaying the footer
+# ============================================
+*/
+
+
 ?>
+	<!-- Jet pack 'Older posts' button will append here -->
+	<div id="infinite-handle-container"></div>
 
-		</div><!-- .site-content -->
+	<!--==== Start Footer Widget Area ====-->
+	<?php if ( is_active_sidebar( 'footer-1' ) || 
+				is_active_sidebar( 'footer-2' ) || 
+				is_active_sidebar( 'footer-3' ) ) : ?>
+				
+		<div class="section footer-widget-area">
+			<div class="container">
 
-		<footer id="colophon" class="site-footer" role="contentinfo">
-			<?php if ( has_nav_menu( 'primary' ) ) : ?>
-				<nav class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Footer Primary Menu', 'twentysixteen' ); ?>">
-					<?php
-						wp_nav_menu(
-							array(
-								'theme_location' => 'primary',
-								'menu_class'     => 'primary-menu',
-							)
-						);
+				<div class="row">
+
+					<?php if ( is_active_sidebar( 'footer-1' ) ) : ?>
+
+						<div class="col-md-4 col-sm-6">
+							
+							<?php dynamic_sidebar( 'footer-1' ); ?>
+						
+						</div>
+
+					<?php endif; ?>
+
+					<?php if ( is_active_sidebar( 'footer-2' ) ) : ?>
+
+						<div class="col-md-4 col-sm-6">
+							
+							<?php dynamic_sidebar( 'footer-2' ); ?>
+						
+						</div>
+
+					<?php endif; ?>
+					
+					<?php if ( is_active_sidebar( 'footer-3' ) ) : ?>
+
+						<div class="col-md-4 col-sm-6">
+							
+							<?php dynamic_sidebar( 'footer-3' ); ?>
+						
+						</div>
+
+					<?php endif; ?>
+
+				</div>
+
+			</div>
+		</div>
+
+	<?php endif; ?>
+	<!--==== End Footer Widget Area ====-->
+
+	<!--==== Start Footer====-->
+	<footer id="footer" class="section-dark">
+		<div class="container">
+			<div class="row">
+				<p class="footer-text">
+					&copy; <?php echo date_i18n('Y', strtotime(date('Y'))) ?> <a href="<?php echo esc_url(home_url()); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a>. <?php _e('Theme by', 'akyl'); ?> <a href="http://akilathiwanka.info">Akila Thiwanka</a>.
+				</p>
+
+				<p class="social-icons">
+					<?php 
+						$links = akyl_load_social_links();
+						foreach ( $links as $link ) {
+							echo $link;
+						}
 					?>
-				</nav><!-- .main-navigation -->
-			<?php endif; ?>
-
-			<?php if ( has_nav_menu( 'social' ) ) : ?>
-				<nav class="social-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Footer Social Links Menu', 'twentysixteen' ); ?>">
-					<?php
-						wp_nav_menu(
-							array(
-								'theme_location' => 'social',
-								'menu_class'     => 'social-links-menu',
-								'depth'          => 1,
-								'link_before'    => '<span class="screen-reader-text">',
-								'link_after'     => '</span>',
-							)
-						);
-					?>
-				</nav><!-- .social-navigation -->
-			<?php endif; ?>
-
-			<div class="site-info">
-				<?php
-					/**
-					 * Fires before the twentysixteen footer text for footer customization.
-					 *
-					 * @since Twenty Sixteen 1.0
-					 */
-					do_action( 'twentysixteen_credits' );
-				?>
-				<span class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
-				<?php
-				if ( function_exists( 'the_privacy_policy_link' ) ) {
-					the_privacy_policy_link( '', '<span role="separator" aria-hidden="true"></span>' );
-				}
-				?>
-				<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'twentysixteen' ) ); ?>" class="imprint">
-					<?php printf( __( 'Proudly powered by %s', 'twentysixteen' ), 'WordPress' ); ?>
-				</a>
-			</div><!-- .site-info -->
-		</footer><!-- .site-footer -->
-	</div><!-- .site-inner -->
-</div><!-- .site -->
-
-<?php wp_footer(); ?>
+				</p>
+			</div>
+		</div>
+	</footer>
+	<!--==== End Footer ====-->
+	
+	<div id="blog-masonry-temp" style="opacity: 0"></div>
+	<?php wp_footer(); ?>
 </body>
 </html>

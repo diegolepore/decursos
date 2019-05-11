@@ -1,68 +1,62 @@
 <?php
-/**
- * The template for displaying archive pages
- *
- * Used to display archive-type pages if nothing more specific matches a query.
- * For example, puts together date-based pages if no date.php file exists.
- *
- * If you'd like to further customize these archive views, you may create a
- * new template file for each one. For example, tag.php (Tag archives),
- * category.php (Category archives), author.php (Author archives), etc.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package WordPress
- * @subpackage Twenty_Sixteen
- * @since Twenty Sixteen 1.0
- */
+/*
+# =============================================
+# archive.php
+#
+# The template for displaying archive pages
+# =============================================
+*/
+?>
 
-get_header(); ?>
+<?php get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<!--==== Start Blog Section ====-->
+<div class="section" id="blog-grid">
+	<div class="container-fluid">
 
-		<?php if ( have_posts() ) : ?>
+		<div class="page-title">
+			
+			<!-- Display the title -->
+			<?php the_archive_title('<h6>', '</h6>') ?>
 
-			<header class="page-header">
-				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
-					the_archive_description( '<div class="taxonomy-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
+			<!-- Display tagline, description -->
+			<?php 
+				$tag_description = tag_description();
+				if ( ! empty( $tag_description ) )
+					the_archive_description( '<div class="tag-archive-meta">', '</div>' ); ?>
 
-			<?php
-			// Start the Loop.
-			while ( have_posts() ) :
-				the_post();
+		</div> <!-- /page-title -->
 
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+		<div class="row blog-masonry">
+			<?php 
+			if ( have_posts() ) : 
 
-				// End the loop.
-			endwhile;
+				/* Start the loop. */
+				while ( have_posts() ) : the_post(); 
 
-			// Previous/next page navigation.
-			the_posts_pagination(
-				array(
-					'prev_text'          => __( 'Previous page', 'twentysixteen' ),
-					'next_text'          => __( 'Next page', 'twentysixteen' ),
-					'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentysixteen' ) . ' </span>',
-				)
-			);
+					/* Include the Post-Format-specific template for the content. */
+					get_template_part( 'content', get_post_format() );
 
-			// If no content, include the "No posts found" template.
-		else :
-			get_template_part( 'template-parts/content', 'none' );
+				endwhile;
 
-		endif;
+			else :
+
+				get_template_part( 'content', 'none' );
+
+			endif;
+			?>
+		</div><!-- end row --> 
+		
+		<!-- Posts navigation -->
+		<?php 
+		the_posts_navigation( array(
+		    'prev_text' => __( '&larr; Older posts', 'akyl' ),
+		    'next_text' => __( 'Newer posts &rarr;', 'akyl' ),
+		) ); 
 		?>
+		
+	</div><!-- end container -->
+</div>
+<!--==== End Blog Section ====-->
 
-		</main><!-- .site-main -->
-	</div><!-- .content-area -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -1,56 +1,87 @@
 <?php
-/**
- * The template for displaying search results pages
- *
- * @package WordPress
- * @subpackage Twenty_Sixteen
- * @since Twenty Sixteen 1.0
- */
+/*
+# ====================================
+# search.php
+#
+# The Template for Search Page
+# ====================================
+*/
+?>
 
-get_header(); ?>
+<?php get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<!-- Show search results, If have -->
+<?php if ( have_posts() ) : ?> 
 
-		<?php if ( have_posts() ) : ?>
+	<!--==== Start Msonry Section ====-->
+	<div class="section" id="blog-grid">
+		<div class="container-fluid">
 
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'twentysixteen' ), '<span>' . esc_html( get_search_query() ) . '</span>' ); ?></h1>
-			</header><!-- .page-header -->
+				<div class="page-title">
+					<!-- Display the title -->
+					<h6><?php echo __('Search Results For', 'akyl') . ' : ' . get_search_query(); ?></h6>
+				</div> <!-- /page-title -->
 
-			<?php
-			// Start the loop.
-			while ( have_posts() ) :
-				the_post();
+				<div class="row blog-masonry">
 
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
+					<?php
+						/* Start the loop. */
+						while ( have_posts() ) : the_post(); 
 
-				// End the loop.
-			endwhile;
+							/* Include the Post-Format-specific template for the content. */
+							get_template_part( 'content', get_post_format() );
 
-			// Previous/next page navigation.
-			the_posts_pagination(
-				array(
-					'prev_text'          => __( 'Previous page', 'twentysixteen' ),
-					'next_text'          => __( 'Next page', 'twentysixteen' ),
-					'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentysixteen' ) . ' </span>',
-				)
-			);
+						endwhile; 
+					?>
 
-			// If no content, include the "No posts found" template.
-		else :
-			get_template_part( 'template-parts/content', 'none' );
+				</div><!-- end row --> 
+				
+				<!-- Posts navigation -->
+				<?php 
+				the_posts_navigation( array(
+				    'prev_text' => __( '&larr; Older posts', 'akyl' ),
+				    'next_text' => __( 'Newer posts &rarr;', 'akyl' ),
+				) ); 
+				?>
+				
+		</div><!-- end container -->
+	</div>
+	<!--==== End Msonry Section ====-->
 
-		endif;
-		?>
+<!-- Show No Results Found Message -->
+<?php else : ?>
 
-		</main><!-- .site-main -->
-	</section><!-- .content-area -->
+	<div class="section style-full">
+		<div class="container">
 
-<?php get_sidebar(); ?>
+			<div class="page-title">
+				<!-- Display the title -->
+				<h6><?php echo __('Search Results For', 'akyl') . ' : ' . get_search_query(); ?></h6>
+			</div> <!-- /page-title -->
+
+			<!-- post content -->
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="post-wrapper">
+						<header>
+							<h2><?php _e('Nothing Found', 'akyl'); ?></h2>
+						</header>
+
+						<div class="post-content">
+							<div class="post-main">
+
+								<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'akyl' ); ?></p>
+
+								<?php get_search_form(); ?>
+
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<?php endif; ?>
+
 <?php get_footer(); ?>
