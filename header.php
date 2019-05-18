@@ -84,7 +84,7 @@
 									<?php endif;
 									$tagline = get_bloginfo( 'description', 'display' );
 									if ( $tagline || is_customize_preview() ) : ?>
-										<p class="site-tagline"><?php echo $tagline; ?></p>
+										<!-- <p class="site-tagline"><?php echo $tagline; ?></p> -->
 									<?php
 									endif; ?>
 								</div>
