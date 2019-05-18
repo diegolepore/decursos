@@ -1848,9 +1848,12 @@ main {
 
 .section-recently-added {
   margin-bottom: 60px;
-  overflow: hidden;
   padding-bottom: 20px;
   border-bottom: 1px solid #dbdbdb; }
+  .section-recently-added:after {
+    content: "";
+    display: table;
+    clear: both; }
   .section-recently-added h2 {
     margin: 0 0 20px 0; }
   .section-recently-added ul {
