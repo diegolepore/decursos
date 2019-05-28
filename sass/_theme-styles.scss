@@ -445,6 +445,7 @@ input[type="text"] {
 	left: 30px;
 	top: 50px;
 	font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	z-index: 10;
 }
 
 .logo img {
@@ -453,9 +454,10 @@ input[type="text"] {
 }
 
 .logo a .first-letter {
-	color: #2c4769;
+	// color: #2c4769;
+	color: #fff;
 	font-size: 1.5em;
-	border: 3px solid #2c4769;
+	border: 3px solid #fff;
 	padding: 4px 8px;
 	font-weight: 700;
 	-webkit-transition: background 0.4s;
@@ -464,8 +466,8 @@ input[type="text"] {
 }
 
 .logo a .first-letter:hover {
-	background: #fff;
-	color: #05182c;
+	background: rgba(255, 255, 255, 0.582);
+	color: #2c4769;
 }
 
 .main-menu {

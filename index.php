@@ -1,9 +1,10 @@
 <?php
 /*
+*
+* Template Name: Landing Page
+*
 # ====================================
 # index.php
-#
-# The main template file
 # ====================================
 */
 ?>
@@ -13,25 +14,34 @@
 <main>
     <div class="cat-main">
         <div class="cat-wrapper">
-            <ul class="cat-wrapper-ul">
-                <li><a href="#">Arte</a></li>
-                <li><a href="#">Libros</a></li>
-                <li><a href="#">Cultura</a></li>
-                <li><a href="#">Ciencia</a></li>
-                <li><a href="#">Comida</a></li>
-                <li><a href="#">Música</a></li>
-                <li><a href="#">Poesía</a></li>
-                <li><a href="#">Escritura</a></li>
-                <li><a href="#">Historia</a></li>
-                <li><a href="#">Productividad</a></li>
-                <li><a href="#">Tecnología</a></li>
-                <li><a href="#"><i class="more-icon"></i></a></li>
-            </ul>
+            <?php
+                echo '<ul class="cat-wrapper-ul">';
+                    $args = array(
+                        'hide_empty'=> 1,
+                        'orderby' => 'name',
+                        'order' => 'ASC'
+                    );
+                    $idx_cats = 0;
+                    $max_cats = 13;
+                    $categories = get_categories($args);
+
+                    while($idx_cats < $max_cats) {
+                        echo 
+                        '<li>
+                            <a href="category/'.$categories[$idx_cats]->slug.'">    
+                                '.$categories[$idx_cats]->name.'
+                            </a>
+                        </li>';
+                        $idx_cats++;
+                    }
+                echo '<li><a href="categorias"><i class="more-icon"></i></a></li>';
+                echo '</ul>';
+            ?>
         </div>
     </div>
 
-    <div class="wrapper">
-        <section class="section-recently-added">
+    <div class="wrapper landing-wrapper">
+        <section class="section-recently-added section-decursos clearfix">
             <h2>Agregados recientemente</h2>
 
             <div class="inner-recently-added">
@@ -143,6 +153,176 @@
                 <i class="right-arrow-icon"></i>
             </a>
         </section>
+
+        <section class="section-recommended section-decursos clearfix">
+            <div class="inner-recommended-section">
+                <div class="left-col">
+                    <h2>Recomendados</h2>
+                    <ul>
+                        <li>
+                            <div class="recommended-image" style="background-image: url(https://images.unsplash.com/photo-1558118385-34a216752d40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);"></div>
+                            <div class="recommended-text">
+                                <div class="excerpt-text">
+                                    <h3>Lorem ipsum</h3>
+                                    <div class="text-wrapper">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit! t alias deleniti nisi corporis esse reprehenderit!</p>
+                                    </div>
+                                    <div class="article-details">
+                                        <p>
+                                            <span>Diego Palacios</span> en <span>Tecnología</span>
+                                            <br>
+                                            <span>14 de mayo</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="recommended-image" style="background-image: url(https://images.unsplash.com/photo-1558118385-34a216752d40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);"></div>
+                            <div class="recommended-text">
+                                <div class="excerpt-text">
+                                    <h3>Lorem ipsum</h3>
+                                    <div class="text-wrapper">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit! t alias deleniti nisi corporis esse reprehenderit!</p>
+                                    </div>
+                                    <div class="article-details">
+                                        <p>
+                                            <span>Diego Palacios</span> en <span>Tecnología</span>
+                                            <br>
+                                            <span>14 de mayo</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="recommended-image" style="background-image: url(https://images.unsplash.com/photo-1558118385-34a216752d40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);"></div>
+                            <div class="recommended-text">
+                                <div class="excerpt-text">
+                                    <h3>Lorem ipsum</h3>
+                                    <div class="text-wrapper">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit! t alias deleniti nisi corporis esse reprehenderit!</p>
+                                    </div>
+                                    <div class="article-details">
+                                        <p>
+                                            <span>Diego Palacios</span> en <span>Tecnología</span>
+                                            <br>
+                                            <span>14 de mayo</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="recommended-image" style="background-image: url(https://images.unsplash.com/photo-1558118385-34a216752d40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);"></div>
+                            <div class="recommended-text">
+                                <div class="excerpt-text">
+                                    <h3>Lorem ipsum</h3>
+                                    <div class="text-wrapper">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit! t alias deleniti nisi corporis esse reprehenderit!</p>
+                                    </div>
+                                    <div class="article-details">
+                                        <p>
+                                            <span>Diego Palacios</span> en <span>Tecnología</span>
+                                            <br>
+                                            <span>14 de mayo</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="recommended-image" style="background-image: url(https://images.unsplash.com/photo-1558118385-34a216752d40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);"></div>
+                            <div class="recommended-text">
+                                <div class="excerpt-text">
+                                    <h3>Lorem ipsum</h3>
+                                    <div class="text-wrapper">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit! t alias deleniti nisi corporis esse reprehenderit!</p>
+                                    </div>
+                                    <div class="article-details">
+                                        <p>
+                                            <span>Diego Palacios</span> en <span>Tecnología</span>
+                                            <br>
+                                            <span>14 de mayo</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="recommended-image" style="background-image: url(https://images.unsplash.com/photo-1558118385-34a216752d40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);"></div>
+                            <div class="recommended-text">
+                                <div class="excerpt-text">
+                                    <h3>Lorem ipsum</h3>
+                                    <div class="text-wrapper">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit! t alias deleniti nisi corporis esse reprehenderit!</p>
+                                    </div>
+                                    <div class="article-details">
+                                        <p>
+                                            <span>Diego Palacios</span> en <span>Tecnología</span>
+                                            <br>
+                                            <span>14 de mayo</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="recommended-image" style="background-image: url(https://images.unsplash.com/photo-1558118385-34a216752d40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);"></div>
+                            <div class="recommended-text">
+                                <div class="excerpt-text">
+                                    <h3>Lorem ipsum</h3>
+                                    <div class="text-wrapper">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit! t alias deleniti nisi corporis esse reprehenderit!</p>
+                                    </div>
+                                    <div class="article-details">
+                                        <p>
+                                            <span>Diego Palacios</span> en <span>Tecnología</span>
+                                            <br>
+                                            <span>14 de mayo</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="recommended-image" style="background-image: url(https://images.unsplash.com/photo-1558118385-34a216752d40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);"></div>
+                            <div class="recommended-text">
+                                <div class="excerpt-text">
+                                    <h3>Lorem ipsum</h3>
+                                    <div class="text-wrapper">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit! t alias deleniti nisi corporis esse reprehenderit!</p>
+                                    </div>
+                                    <div class="article-details">
+                                        <p>
+                                            <span>Diego Palacios</span> en <span>Tecnología</span>
+                                            <br>
+                                            <span>14 de mayo</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right-col"></div>
+            </div>
+
+            <a href="#" class="simple-link">
+                <span>Ver todos </span>
+                <i class="right-arrow-icon"></i>
+            </a>
+        </section>
+
+        <section class="section-join-us section-decursos">
+            <div class="inner-text">
+                <h2>¿Quieres compartir tus ideas y artículos?</h2>
+                <p>Muy facil, solo debes registrate <a href="#">aquí</a> y puedes empezar a escribir tus artículos con nosotros. Para saber más de como funciona Decursos haz click <a href="#">aquí</a></p>
+            </div>
+            <div class="image-join" style="background-image: url(https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80);"></div>
+        </section>
+
+
     </div>
 
 </main>

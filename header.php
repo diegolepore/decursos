@@ -70,30 +70,60 @@
 		<?php endif; ?>
 
 		<!-- Header Banner -->
-		<div class="section banner" style="background-image: url('<?php echo esc_url(header_image()) ?>');">
-			<div class="display-table">
-				<div class="display-table-cell">
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="text-center">
-									<?php if ( is_front_page() && is_home() ) : ?>
-										<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-									<?php else : ?>
-										<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-									<?php endif;
-									$tagline = get_bloginfo( 'description', 'display' );
-									if ( $tagline || is_customize_preview() ) : ?>
-										<!-- <p class="site-tagline"><?php echo $tagline; ?></p> -->
-									<?php
-									endif; ?>
+		<?php 
+			if(is_category()){ 		
+				// echo var_dump($GLOBALS['catImage']); 
+			?>
+				<div class="section banner" style="background-image: url('<?php echo $GLOBALS['catImage']; ?>');">
+					<div class="display-table">
+						<div class="display-table-cell">
+							<div class="container">
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="text-center">
+										<h1 class="site-title"><?php echo $GLOBALS['catName']; ?></h1>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			<?php } else { 
+			 	// echo "Is not category page"; 
+			?>
+			<div class="section banner" style="background-image: url('<?php the_post_thumbnail_url(); ?>');">
+				<div class="display-table">
+						<div class="display-table-cell">
+							<div class="container">
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="text-center">
+											<?php if ( is_front_page() && is_home() ) : ?>
+												<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
+											<?php else : ?>
+												<p class="site-title"><?php bloginfo( 'name' ); ?></p>
+											<?php endif;
+											$tagline = get_bloginfo( 'description', 'display' );
+											if ( $tagline || is_customize_preview() ) : ?>
+												<!-- <p class="site-tagline"><?php echo $tagline; ?></p> -->
+											<?php
+											endif; ?>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
+			
+				
+		<?php 
+		// if ( has_post_thumbnail() ) {
+		// 	the_post_thumbnail();
+		// }  
+		?>
 	</header>
 	<!--===== End Header Area ======-->
 
