@@ -15,13 +15,13 @@
 	/*=============================
 	        Sticky header
 	==============================*/
-	$window.on('scroll', function() {
-    	if ($(".navbar").offset().top > 10) {
-    	    $(".navbar-fixed-top").addClass("top-nav-collapse");
-    	} else {
-    	    $(".navbar-fixed-top").removeClass("top-nav-collapse");
-    	}
-	});
+	// $window.on('scroll', function() {
+  //   	if ($(".navbar").offset().top > 10) {
+  //   	    $(".navbar-fixed-top").addClass("top-nav-collapse");
+  //   	} else {
+  //   	    $(".navbar-fixed-top").removeClass("top-nav-collapse");
+  //   	}
+	// });
 
 
 	/*=============================
@@ -165,5 +165,13 @@ jQuery( document ).ready( function( $ ) {
 		}, 500);
 
 		$elements.fadeIn();
-    });
+	});
+	
+	$(document).on("click", ".burger-menu", function(){
+		$("#menu-main-menu").toggleClass("open");
+	});
 });
+
+
+
+
