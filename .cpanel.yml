@@ -2,4 +2,4 @@
 deployment:
  tasks:
  - export DEPLOYPATH=/home/wl2fn9pzgydd/public_html/wp-content/themes/akyl
- - /bin/cp * $DEPLOYPATH
+ - /bin/cp -r * $DEPLOYPATH
