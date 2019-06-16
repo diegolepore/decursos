@@ -441,10 +441,12 @@ input[type="text"] {
 }
 
 .logo {
-	position: absolute;
-	left: 30px;
-	top: 50px;
+	// position: absolute;
+	// left: 30px;
+	// top: 50%;
+	// transform: translateY(-50%);
 	font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	z-index: 10;
 }
 
 .logo img {
@@ -453,19 +455,20 @@ input[type="text"] {
 }
 
 .logo a .first-letter {
-	color: #2c4769;
-	font-size: 1.5em;
-	border: 3px solid #2c4769;
-	padding: 4px 8px;
-	font-weight: 700;
+	// color: #2c4769;
+    color: #252b30;
+    font-size: 1.2em;
+    border: 3px solid #252b30;
+    padding: 2px 6px;
+    font-weight: 700;
 	-webkit-transition: background 0.4s;
 	-o-transition: background 0.4s;
 	transition: background 0.4s;
 }
 
 .logo a .first-letter:hover {
-	background: #fff;
-	color: #05182c;
+	background: rgba(255, 255, 255, 0.582);
+	color: #2c4769;
 }
 
 .main-menu {
@@ -480,6 +483,7 @@ input[type="text"] {
 .navbar-collapse {
 	border: none !important;
 	box-shadow: none !important;
+	background-color: rgba(0,0,0,.7);
 }
 
 .navbar-collapse.in {
@@ -496,8 +500,8 @@ input[type="text"] {
 
 .nav-toggle {
 	outline: none;
-	display: inline-block;
 	float: right;
+	background-color: rgba(0,0,0,.7);
 }
 
 .toggle-btn {
@@ -674,7 +678,8 @@ input[type="text"] {
 	margin-top: 20px;
 	margin-bottom: 10px;
 	font-weight: 600;
-	font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;;
+	font-family: 'Georgia', serif;
+	// font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .site-title a {
@@ -685,7 +690,6 @@ input[type="text"] {
 	background-color: #2c4769;
 	color: #fff;
 	height: 300px;
-	background-size: cover;
 }
 
 .site-header::after {
@@ -1875,11 +1879,11 @@ footer a:hover {
 
 	.nav-menu {
 		width: 100%;
-		background: #091b2c;
+		background: #fff;
 	}
 	
 	.nav-menu li a {
-		color: #fff;
+		color: #091b2c;
 	}
 
 	.main-menu.active .navbar-collapse.in {
@@ -1940,22 +1944,22 @@ footer a:hover {
 	}
 }
 
-@media (max-width: 480px) {
-	.nav-social {
-		/*display: none;*/
-		visibility: hidden;
-	}
+// @media (max-width: 480px) {
+// 	.nav-social {
+// 		/*display: none;*/
+// 		visibility: hidden;
+// 	}
 	
-	.logo {
-		left: 20px;
-		top: 25px;
-	}
+// 	.logo {
+// 		left: 20px;
+// 		top: 25px;
+// 	}
 
-	.main-menu, .main-menu.active {
-		right: 15px;
-	    top: 10px;
-	}
-}
+// 	.main-menu, .main-menu.active {
+// 		right: 15px;
+// 	    top: 10px;
+// 	}
+// }
 
 
 /*
@@ -2107,6 +2111,6 @@ footer a:hover {
 }
 
 /* WordPress Top menu fix in admin mod */
-.logged-in .logo, .logged-in .main-menu {
-	margin-top: 32px;
-}
+// .logged-in .logo, .logged-in .main-menu {
+// 	margin-top: 32px;
+// }

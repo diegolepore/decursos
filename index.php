@@ -1,9 +1,10 @@
 <?php
 /*
+*
+* Template Name: Landing Page
+*
 # ====================================
 # index.php
-#
-# The main template file
 # ====================================
 */
 ?>
@@ -13,137 +14,203 @@
 <main>
     <div class="cat-main">
         <div class="cat-wrapper">
-            <ul class="cat-wrapper-ul">
-                <li><a href="#">Arte</a></li>
-                <li><a href="#">Libros</a></li>
-                <li><a href="#">Cultura</a></li>
-                <li><a href="#">Ciencia</a></li>
-                <li><a href="#">Comida</a></li>
-                <li><a href="#">Música</a></li>
-                <li><a href="#">Poesía</a></li>
-                <li><a href="#">Escritura</a></li>
-                <li><a href="#">Historia</a></li>
-                <li><a href="#">Productividad</a></li>
-                <li><a href="#">Tecnología</a></li>
-                <li><a href="#"><i class="more-icon"></i></a></li>
-            </ul>
+            <?php
+                echo '<ul class="cat-wrapper-ul">';
+                    $args = array(
+                        'hide_empty'=> 0,
+                        'orderby' => 'name',
+                        'order' => 'ASC'
+                    );
+                    $idx_cats = 0;
+                    $max_cats = 13;
+                    $categories = get_categories($args);
+
+                    while($idx_cats < $max_cats) {
+                        echo 
+                        '<li>
+                            <a href="category/'.$categories[$idx_cats]->slug.'">    
+                                '.$categories[$idx_cats]->name.'
+                            </a>
+                        </li>';
+                        $idx_cats++;
+                    }
+                echo '<li><a href="categorias"><i class="more-icon"></i></a></li>';
+                echo '</ul>';
+            ?>
         </div>
     </div>
 
-    <div class="wrapper">
-        <section class="section-recently-added">
+    <div class="wrapper landing-wrapper">
+        <section class="section-recently-added section-decursos clearfix">
             <h2>Agregados recientemente</h2>
 
             <div class="inner-recently-added">
-                <div class="first-recently-added-item">
-                    <div class="first-recently-added-image" style="background-image: url(https://images.unsplash.com/photo-1558102822-da570eb113ed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80);"></div>
-                    <div class="excerpt-text">
-                        <h3>Lorem ipsum</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit!</p>
-                        <div class="article-details">
-                            <p>
-                                <span>Diego Palacios</span> en <span>Tecnología</span>
-                                <br>
-                                <span>14 de mayo</span>
-                            </p>
-                        </div>
+
+
+                <!-- // Define our WP Query Parameters -->
+                <?php $the_query_first_image = new WP_Query( 'posts_per_page=1' ); ?>
+                <!-- // Start our WP Query -->
+                <?php while ($the_query_first_image -> have_posts()) : $the_query_first_image -> the_post();?>
+                    <div class="first-recently-added-item">
+                        <a href="<?php the_permalink() ?>">
+                        
+                            <div class="first-recently-added-image" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(),'full'); ?>);"></div>
+                           
+                            <div class="excerpt-text">
+                                <!-- // Display the Post Title with Hyperlink -->   
+                                <h3><?php the_title(); ?></h3>
+                                <!-- // Display the Post Excerpt -->
+                                <p><?php the_excerpt(__('(more…)')); ?></p>
+                                <div class="article-details">
+                                    <p>
+                                        <span><?php the_author(); ?></span> en <span><?php 
+                                            foreach((the_category(", ")) as $category) { 
+                                                echo $category->cat_name . "Yeah";
+                                            } 
+                                        ?></span>
+                                        <br>
+                                        <span><?php 
+                                            $post_date = get_the_date( 'j F, Y' ); 
+                                            echo $post_date;
+                                        ?></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </div>
+                <!-- // Repeat the process and reset once it hits the limit -->
+                <?php 
+                endwhile;
+                wp_reset_postdata();
+                ?>
+
+
 
                 <ul class="recently-added-ul">
-                    <li class="recently-added-item">
-                        <div class="recently-added-image" style="background-image: url(https://images.unsplash.com/photo-1558118385-34a216752d40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);"></div>
-                        <div class="excerpt-text">
-                            <h3>Lorem ipsum</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit!</p>
-                            <div class="article-details">
-                            <p>
-                                <span>Diego Palacios</span> en <span>Tecnología</span>
-                                <br>
-                                <span>14 de mayo</span>
-                            </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="recently-added-item">
-                        <div class="recently-added-image" style="background-image: url(https://images.unsplash.com/photo-1558130449-1b99c4f99c46?ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80);"></div>
-                        <div class="excerpt-text">
-                            <h3>Lorem ipsum</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit!</p>
-                            <div class="article-details">
-                            <p>
-                                <span>Diego Palacios</span> en <span>Tecnología</span>
-                                <br>
-                                <span>14 de mayo</span>
-                            </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="recently-added-item">
-                        <div class="recently-added-image" style="background-image: url(https://images.unsplash.com/photo-1558100034-cc1bc7ad09b8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);"></div>
-                        <div class="excerpt-text">
-                            <h3>Lorem ipsum</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit!</p>
-                            <div class="article-details">
-                            <p>
-                                <span>Diego Palacios</span> en <span>Tecnología</span>
-                                <br>
-                                <span>14 de mayo</span>
-                            </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="recently-added-item">
-                        <div class="recently-added-image" style="background-image: url(https://images.unsplash.com/photo-1558169527-99de3365c5b0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);"></div>
-                        <div class="excerpt-text">
-                            <h3>Lorem ipsum</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit!</p>
-                            <div class="article-details">
-                            <p>
-                                <span>Diego Palacios</span> en <span>Tecnología</span>
-                                <br>
-                                <span>14 de mayo</span>
-                            </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="recently-added-item">
-                        <div class="recently-added-image" style="background-image: url(https://images.unsplash.com/photo-1558169527-e8fe3446f232?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);"></div>
-                        <div class="excerpt-text">
-                            <h3>Lorem ipsum</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit!</p>
-                            <div class="article-details">
-                            <p>
-                                <span>Diego Palacios</span> en <span>Tecnología</span>
-                                <br>
-                                <span>14 de mayo</span>
-                            </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="recently-added-item">
-                        <div class="recently-added-image" style="background-image: url(https://images.unsplash.com/photo-1558091579-31593a62efdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);"></div>
-                        <div class="excerpt-text">
-                            <h3>Lorem ipsum</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda ratione repudiandae laborum! Modi aliquid sequi rem, eos nulla quisquam laudantium fugit saepe odit alias deleniti nisi corporis esse reprehenderit!</p>
-                            <div class="article-details">
-                            <p>
-                                <span>Diego Palacios</span> en <span>Tecnología</span>
-                                <br>
-                                <span>14 de mayo</span>
-                            </p>
-                            </div>
-                        </div>
-                    </li>
-
+                    <!-- // Define our WP Query Parameters -->
+                    <?php $the_query = new WP_Query( 'posts_per_page=7' ); ?>
+                    <!-- // Start our WP Query -->
+                    <?php 
+                    $i = 0;
+                    while ($the_query -> have_posts() ) : $the_query -> the_post();?>
+                        <?php if($i > 0) { ?>
+                        <li class="recently-added-item">
+                            <a href="<?php the_permalink() ?>">
+                            
+                                <div class="recently-added-image" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(),'full'); ?>);"></div>
+                                <div class="excerpt-text">
+                                    <!-- // Display the Post Title with Hyperlink -->   
+                                    <h3 title="<?php the_title(); ?>"><?php the_title(); ?></h3>
+                                    <!-- // Display the Post Excerpt -->
+                                    <p><?php the_excerpt(__('(more…)')); ?></p>
+                                    <div class="article-details">
+                                    <p>
+                                            <span><?php the_author(); ?></span> en <span><?php 
+                                                foreach((the_category(", ")) as $category) { 
+                                                    echo $category->cat_name . "Yeah";
+                                                } 
+                                            ?></span>
+                                            <br>
+                                            <span><?php 
+                                                $post_date = get_the_date( 'j F, Y' ); 
+                                                echo $post_date;
+                                            ?></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <?php } ?>
+                    <!-- // Repeat the process and reset once it hits the limit -->
+                    <?php 
+                    $i++;
+                    endwhile;
+                    wp_reset_postdata();
+                    ?>
                 </ul>
             </div>
-            <a href="#" class="simple-link">
-                <span>Ver todos </span>
+            <a href="categorias" class="simple-link">
+                <span>Ver más</span>
+                <i class="right-arrow-icon"></i>
+            </a>
+        </section>
+
+        <section class="section-recommended section-decursos clearfix">
+            <div class="inner-recommended-section">
+                <div class="left-col">
+                    <h2>Recomendados</h2>
+
+                    <ul>
+                    <!-- // Define our WP Query Parameters -->
+                    <?php $the_query = new WP_Query( 'posts_per_page= 20' ); ?>
+                    <!-- // Start our WP Query -->
+                    <?php 
+                    
+                    while ($the_query -> have_posts()) : $the_query -> the_post();?>
+                        <?php 
+                        $post_tags = get_the_tags();
+                        if ( $post_tags[0]->name == "recomendado") {
+                            // echo $post_tags[0]->name; 
+                         ?>
+                        <li>
+                            <!-- <a href="<?php the_permalink() ?>"> -->
+                            
+                                <a class="recommended-image" href="<?php the_permalink() ?>" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(),'full'); ?>);"></a>
+                                
+                                <div class="recommended-text">
+                                    <div class="excerpt-text">
+                                        <!-- // Display the Post Title with Hyperlink -->   
+                                        <h3><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h3>
+                                        <!-- // Display the Post Excerpt -->
+                                        <p><?php the_excerpt(__('(more…)')); ?></p>
+                                        <div class="article-details">
+                                        <p>
+                                            <span><?php the_author(); ?></span> en <span><?php 
+                                                foreach((the_category(", ")) as $category) { 
+                                                    echo $category->cat_name . "Yeah";
+                                                } 
+                                            ?></span>
+                                            <br>
+                                            <span><?php 
+                                                $post_date = get_the_date( 'j F, Y' ); 
+                                                echo $post_date;
+                                            ?></span>
+                                        </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- </a> -->
+                        </li>
+                        <?php } ?>
+                    <!-- // Repeat the process and reset once it hits the limit -->
+                    <?php 
+          
+                    endwhile;
+                    wp_reset_postdata();
+                    ?>
+                </ul>
+                </div>
+                <div class="right-col hide">
+                    <div class="misc-box"></div>
+                    <div class="misc-box"></div>
+                </div>
+            </div>
+
+            <a href="categorias" class="simple-link">
+                <span>Ver más</span>
                 <i class="right-arrow-icon"></i>
             </a>
         </section>
     </div>
+
+    <section class="section-join-us section-decursos">
+        <div class="inner-text">
+            <h2>¿Quieres compartir tus ideas y artículos?</h2>
+            <p>Muy fácil, solo debes registrate <a href="register">aquí</a> para que puedas empezar a escribir tus artículos con nosotros. Si quieres saber como funciona haz click <a href="#">aquí</a>.</p>
+        </div>
+        <div class="bg-patron"></div>
+        <div class="image-join" style="background-image: url(<?php the_field("bottom_large_image"); ?>);"></div>
+    </section>
 
 </main>
 
