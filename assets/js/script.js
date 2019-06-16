@@ -165,5 +165,13 @@ jQuery( document ).ready( function( $ ) {
 		}, 500);
 
 		$elements.fadeIn();
-    });
+	});
+	
+	$(document).on("click", ".burger-menu", function(){
+		$("#menu-main-menu").toggleClass("open");
+	});
 });
+
+
+
+

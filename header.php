@@ -23,23 +23,49 @@
 	
 	<!--===== Header Area =====-->
 	<header class="site-header">
-		<div class="logo">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-				<?php 
-				if ( get_theme_mod( 'custom_logo' ) !='' ) {
-					$site_icon = esc_url( get_site_icon_url(32) );
-					$site_icon = get_theme_mod( 'custom_logo' );
-					the_custom_logo();
-				}else{
-					echo '<span class="first-letter">' . mb_substr( get_bloginfo('name'), 0, 1 ) . '</span>';
-				}
-				?>
-			</a>
-		</div>
+
 
 		<!-- Navigation -->
 		<?php if ( has_nav_menu( 'main-menu' ) ) : ?>
-			<nav class="navbar custom-navbar navbar-fixed-top">
+
+
+			<nav class="main-nav">
+
+				<div class="logo-left-col">
+					<div class="logo">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+							<?php 
+							if ( get_theme_mod( 'custom_logo' ) !='' ) {
+								$site_icon = esc_url( get_site_icon_url(32) );
+								$site_icon = get_theme_mod( 'custom_logo' );
+								the_custom_logo();
+							}else{
+								echo '<span class="first-letter">' . mb_substr( get_bloginfo('name'), 0, 1 ) . '</span>';
+							}
+							?>
+						</a>
+					</div>
+				</div>
+
+				<div class="separator"></div>
+
+				<div class="main-menu-wraper">
+					<?php
+						wp_nav_menu( array( 
+							'theme_location' => 'main-menu',
+							// 'menu_class' => 'nav navbar-nav nav-menu pull-right',
+							'container' => ''
+						));
+					?>
+
+					<div class="burger-menu">
+						<i class="burger-icon"></i>
+					</div>
+
+				</div>
+			</nav>
+
+			<!-- <nav class="navbar custom-navbar navbar-fixed-top">
 				<div class="main-menu">
 					<div class="nav-toggle">
 						<button class="toggle-btn">
@@ -51,22 +77,22 @@
 					<div class="navbar-collapse collapse in">
 						<ul class="nav navbar-nav nav-social">
 							<?php 
-								$links = akyl_load_social_links();
-								foreach ( $links as $link ) {
-									echo '<li>' . $link . '</li>' ;
-								}
+								// $links = akyl_load_social_links();
+								// foreach ( $links as $link ) {
+								// 	echo '<li>' . $link . '</li>' ;
+								// }
 							?>
 						</ul>
 						<?php
-						wp_nav_menu( array( 
-						 	'theme_location' => 'main-menu',
-						 	'menu_class' => 'nav navbar-nav nav-menu',
-						 	'container' => ''
-						));
+						// wp_nav_menu( array( 
+						//  	'theme_location' => 'main-menu',
+						//  	'menu_class' => 'nav navbar-nav nav-menu',
+						//  	'container' => ''
+						// ));
 						?>
 					</div>
 				</div>
-			</nav>
+			</nav> -->
 		<?php endif; ?>
 
 		<!-- Header Banner -->
@@ -99,16 +125,10 @@
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="text-center">
-											<?php if ( is_front_page() && is_home() ) : ?>
-												<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
-											<?php else : ?>
-												<p class="site-title"><?php bloginfo( 'name' ); ?></p>
-											<?php endif;
-											$tagline = get_bloginfo( 'description', 'display' );
-											if ( $tagline || is_customize_preview() ) : ?>
-												<!-- <p class="site-tagline"><?php echo $tagline; ?></p> -->
-											<?php
-											endif; ?>
+												<h1 class="site-title"><?php the_title(); ?></h1>
+											
+												<!-- <p class="site-title"></p> -->
+						
 										</div>
 									</div>
 								</div>
