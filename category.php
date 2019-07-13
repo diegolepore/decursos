@@ -22,28 +22,39 @@ foreach($categories as $category) {
 get_header(); ?> 
  
 <section id="primary" class="site-content">
-<div id="content" role="main">
+<div id="content" class="container container-category-articles" role="main">
  
+
 <?php 
 // Check if there are any posts to display
-if ( have_posts() ) : ?>
- 
- 
+if ( have_posts() ) : ?> 
 <?php
  
 // The Loop
 while ( have_posts() ) : the_post(); ?>
-<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-<small><?php the_time('F jS, Y') ?> by <?php the_author_posts_link() ?></small>
- 
-<div class="entry">
-<?php the_excerpt(); ?>
- 
- <p class="postmetadata"><?php
-  comments_popup_link( 'No comments yet', '1 comment', '% comments', 'comments-link', 'Comments closed');
-?></p>
-</div>
- 
+    <div class="article-item">
+        <a class="article-image" href="<?php the_permalink() ?>" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(),'full'); ?>);"></a>
+
+        <div class="article-text">
+            <h3><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
+            
+            <div class="entry">
+                <?php the_excerpt(); ?>
+                <!-- <p class="postmetadata"><?php
+                //   comments_popup_link( 'No comments yet', '1 comment', '% comments', 'comments-link', 'Comments closed');
+                ?></p> -->
+            </div>
+            <div class="article-details">
+                <span>
+                    <?php the_time('j F, Y') ?>
+                </span> 
+                por 
+                <span>
+                    <?php the_author_posts_link() ?>
+                </span>
+            </div>
+        </div>
+    </div>
 <?php endwhile; 
  
 else: ?>

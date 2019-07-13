@@ -26,18 +26,23 @@
         );
         $categories = get_categories($args);
 
-        foreach($categories as $category) { 
-            $image = get_field('category_image', $category->taxonomy . '_' . $category->term_id );
-            echo 
-                '<li>
-                    <img src="'.$image.'" width="200px">
-                    <a href="/Decursos/category/'.$category->slug.'">    
-                        '.$category->name.'
-                    </a>
-                </li>';
+        ?>
 
-            echo get_field('category-image');
-        }
-    ?>
+        <div class="container categories-container">
+            <ul class="categories-ul">
+                <?php
+                    foreach($categories as $category) { 
+                        $image = get_field('category_image', $category->taxonomy . '_' . $category->term_id );
+                        echo 
+                            '<li style="background-image: url('.$image.')">
+                                <a href="/Decursos/category/'.$category->slug.'">    
+                                    '.$category->name.'
+                                </a>
+                            </li>';
+                        echo get_field('category-image');
+                    }
+                ?>
+            </ul>
+        </div>
 
 <?php get_footer(); ?>

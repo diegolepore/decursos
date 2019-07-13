@@ -745,9 +745,9 @@ input[type="text"] {
 .post-wrapper {
 	background: #fff;
 	padding: 0;
-	-webkit-box-shadow: 0px 15px 45px -9px rgba(0,0,0,0.20);
-	-moz-box-shadow: 0px 15px 45px -9px rgba(0,0,0,0.20);
-	box-shadow: 0px 15px 45px -15px rgba(0,0,0,0.20);
+	// -webkit-box-shadow: 0px 15px 45px -9px rgba(0,0,0,0.20);
+	// -moz-box-shadow: 0px 15px 45px -9px rgba(0,0,0,0.20);
+	// box-shadow: 0px 15px 45px -15px rgba(0,0,0,0.20);
 }
 
 .post-thumb {
@@ -941,6 +941,14 @@ input[type="text"] {
 	margin: 0 auto;
     max-width: 700px;
     padding: 6% 0 15px;
+}
+
+.um-page-loggedin, .um-page-loggedout {
+	.style-full .post-wrapper header {
+		h1 {
+			text-align: center;
+		}
+	}
 }
 
 .style-full .post-meta span {

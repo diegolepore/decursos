@@ -115,7 +115,11 @@
 						</div>
 					</div>
 				</div>
-			<?php } else { 
+			<?php } else if(is_single()) {
+			
+				
+			
+			} else { 
 			 	// echo "Is not category page"; 
 			?>
 			<div class="section banner" style="background-image: url('<?php the_post_thumbnail_url(); ?>');">

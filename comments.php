@@ -13,6 +13,8 @@ if ( post_password_required() ) {
 ?>
 <div class="row">
 	<div class="post-comments">	
+
+		<div class="post-comments-inner container">
 		
 		<?php if ( have_comments() ) : ?>
 			<div id="comments" class="comments-area">
@@ -119,6 +121,6 @@ if ( post_password_required() ) {
 			),
 		);
 		comment_form($comments_args); ?>
-
+		</div>
 	</div>
 </div>

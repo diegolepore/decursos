@@ -14,8 +14,8 @@
 ?>
 
 <!--==== Start Post Section ====-->
-<div class="section style-full">
-	<div class="container">
+<div class="section style-full article-page">
+	<div>
 		<!-- post content -->
 		<div class="row">
 			<!-- Start single post -->
@@ -27,14 +27,26 @@
 
 						<header>
 							<h1>
-								<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" ><?php the_title(); ?></a>
+								<?php the_title(); ?>
 							</h1>
-							<div class="post-meta tags">
+							<div class="post-meta tags hide">
 
 								<?php akyl_post_meta( 'category' ); ?>
 
-								<?php akyl_post_meta( 'date' ); ?>
+								<?php akyl_post_meta( 'date' ); ?>	
+							</div>
 
+							<div class="author-info-wrapper">
+
+								<div class="author-image">
+									<?php akyl_post_meta( 'user_avatar' ); ?>
+								</div>
+
+								<div class="author-info">
+									<?php the_author(); ?>
+									<?php akyl_post_meta( 'category' ); ?>
+									<?php akyl_post_meta( 'date' ); ?>
+								</div>
 							</div>
 						</header>
 						
@@ -106,34 +118,6 @@
 							</div>	
 							
 						</div>	
-
-						<div class="post-meta-container">
-
-							<div class="row">
-								<div class="author-image-container col-sm-3">
-									<div class="author-image">
-
-										<?php akyl_post_meta( 'user_avatar' ); ?>
-
-									</div>
-								</div>
-
-								<div class="author-bio col-sm-9 col-xs-12">
-
-									<h4>
-										<a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>">
-											<?php akyl_post_meta( 'author_name' ); ?>
-										</a>
-									</h4>
-
-									<p><?php akyl_post_meta( 'author_bio' ); ?></p>
-
-								</div>
-
-								<div class="clearfix"></div>
-							</div>
-
-						</div>
 						
 					</div>
 		
@@ -141,9 +125,8 @@
 
 			</article><!-- End single post -->
 		</div>
-
+		
 		<?php comments_template( '', true ); ?>
-
 	</div>
 </div>
 <!--==== End Post Section ====-->

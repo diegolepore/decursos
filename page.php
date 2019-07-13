@@ -12,7 +12,8 @@
 
 <!--==== Start Page Content ====-->
 <div class="section style-full">
-	<div class="container">
+	<!-- <div class="container"> -->
+	<div>
 		<!-- post content -->
 		<div class="row">
 			<!-- Start single post -->
