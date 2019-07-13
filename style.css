@@ -2192,7 +2192,7 @@ ul.categories-ul li {
     flex-direction: column;
     padding-left: 20px; }
 
-.um-page-loggedin .section.banner, .um-page-loggedout .section.banner {
+.um-page-loggedin .section.banner, .um-page-loggedout .section.banner, .page-id-38.logged-in .section.banner {
   display: none; }
 
 .um-page-user .post-wrapper header, .um-page-account .post-wrapper header {
